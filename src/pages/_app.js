@@ -1,5 +1,11 @@
-import "@/styles/globals.css";
+import { EuiProvider } from '@elastic/eui';
 
-export default function App({ Component, pageProps }) {
-  return <Component {...pageProps} />;
+function MyApp({ Component, pageProps }) {
+  return (
+    <EuiProvider colorMode="light">
+      <Component {...pageProps} />
+    </EuiProvider>
+  );
 }
+
+export default MyApp;
