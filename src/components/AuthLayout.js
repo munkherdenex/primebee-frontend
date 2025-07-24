@@ -88,7 +88,7 @@ export default function AuthLayout({ children }) {
                             inset: 0,
                             pointerEvents: 'none',
                             borderRadius: 18,
-                            boxShadow: '0 0 20px 80px #fff, 0 0 10px 10px #eef7faff inset',
+                            boxShadow: '0 0 20px 80px #fff, 0 0 25px 17px white inset',
                             filter: 'blur(2px)',
                             zIndex: 1,
                         }}

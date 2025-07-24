@@ -27,6 +27,7 @@ export default function AuthForm({ isLogin = true }) {
             alert('Logged in!');
         } else {
             setSubmitted(true);
+            setResendTimer(60); // <-- Start timer on submit
         }
     };
     const [resendTimer, setResendTimer] = useState(0);
@@ -46,17 +47,20 @@ export default function AuthForm({ isLogin = true }) {
 
     if (!isLogin && submitted) {
         return (
-            <div style={{ width: '100%', maxWidth: 400, textAlign: 'center' }}>
+            <div style={{ width: '100%', maxWidth: 400, height: '88%', textAlign: 'center' }}>
                 <Image
                     src="/primebee-logo.png"
                     alt="PrimeBee Logo"
                     width={160}
                     height={40}
-                    style={{ objectFit: 'contain', marginBottom: 32 }}
+                    style={{ objectFit: 'contain', marginBottom: 42 }}
                 />
-                <EuiTitle size="l">
+                <EuiTitle size="l" align="left" style={{ marginBottom: 16 }}>
                     <h1>Бүртгүүлэх</h1>
                 </EuiTitle>
+                <span style={{ fontSize: 16, color: '#666', textAlign: 'left'}}>
+                    Таны имэйл хаяг руу бүртгэлийн линк илгээгдлээ.
+                </span>
                 <EuiSpacer size="xxl" />
                 <EuiCallOut
                     title="Имэйл илгээгдлээ"
@@ -65,7 +69,9 @@ export default function AuthForm({ isLogin = true }) {
                     style={{ marginBottom: 14, textAlign: 'left' }}
                 >
                     <div style={{ marginTop: 8 }}>
-                        {`${email} хаяг руу бүртгэлийн линк илгээгдлээ. Имэйлээ шалгаад линк дээр дарж бүртгэлээ баталгаажуулна уу.`}
+                      {`${email} хаяг руу бүртгэлийн линк илгээгдлээ.`}
+                      <br />
+                      Имэйлээ шалгаад линк дээр дарж бүртгэлээ баталгаажуулна уу.
                     </div>
                 </EuiCallOut>
                 <EuiButton
@@ -94,7 +100,7 @@ export default function AuthForm({ isLogin = true }) {
     }
 
     return (
-        <form onSubmit={handleSubmit} style={{ width: '100%', maxWidth: 400 }}>
+        <form onSubmit={handleSubmit} style={{ width: '100%', maxWidth: 400, height: '88%' }}>
             <div style={{ display: 'flex', justifyContent: 'left', marginBottom: 70 }}>
                 <Image
                     src="/primebee-logo.png"
@@ -104,9 +110,12 @@ export default function AuthForm({ isLogin = true }) {
                     style={{ objectFit: 'contain' }}
                 />
             </div>
-            <EuiTitle size="l">
+            <EuiTitle size="l" style={{ marginBottom: 14 }}>
                 <h1>{isLogin ? 'Нэвтрэх' : 'Бүртгүүлэх'}</h1>
             </EuiTitle>
+            <span style={{ fontSize: 16, color: '#666' }}>
+                {isLogin ? '' : 'Имэйл хаягаа оруулж бүртгүүлнэ үү.'}
+            </span>
             <EuiSpacer size="xxl" />
 
             <strong>Имэйл</strong>
