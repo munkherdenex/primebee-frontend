@@ -27,7 +27,7 @@ export default function AuthForm({ isLogin = true }) {
             alert('Logged in!');
         } else {
             setSubmitted(true);
-            setResendTimer(60); // <-- Start timer on submit
+            setResendTimer(60); 
         }
     };
     const [resendTimer, setResendTimer] = useState(0);
@@ -47,7 +47,7 @@ export default function AuthForm({ isLogin = true }) {
 
     if (!isLogin && submitted) {
         return (
-            <div style={{ width: '100%', maxWidth: 400, height: '88%', textAlign: 'center' }}>
+            <div style={{ width: '100%', maxWidth: 500, height: '88%', textAlign: 'center' }}>
                 <Image
                     src="/primebee-logo.png"
                     alt="PrimeBee Logo"
@@ -100,7 +100,7 @@ export default function AuthForm({ isLogin = true }) {
     }
 
     return (
-        <form onSubmit={handleSubmit} style={{ width: '100%', maxWidth: 400, height: '88%' }}>
+        <form onSubmit={handleSubmit} style={{ width: '100%', maxWidth: 500, height: '88%' }}>
             <div style={{ display: 'flex', justifyContent: 'left', marginBottom: 70 }}>
                 <Image
                     src="/primebee-logo.png"
@@ -151,7 +151,7 @@ export default function AuthForm({ isLogin = true }) {
                             checked={remember}
                             onChange={(e) => setRemember(e.target.checked)}
                         />
-                        <EuiLink href="#">Нууц үгээ мартсан?</EuiLink>
+                        <EuiLink href="/forgot-password">Нууц үгээ мартсан?</EuiLink>
                     </div>
                 </>
             )}

@@ -237,7 +237,6 @@ export default function AuthLayout({ children }) {
                 </div>
             )}
 
-            {/* Right side: Auth content */}
             <div
                 style={{
                     flex: 1,
