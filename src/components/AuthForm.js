@@ -24,7 +24,10 @@ export default function AuthForm({ isLogin = true }) {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (isLogin) {
-            alert('Logged in!');
+        localStorage.setItem('token', 'dummy-token');
+
+        // Redirect to dashboard
+        router.push('/dashboard');
         } else {
             setSubmitted(true);
             setResendTimer(60); 

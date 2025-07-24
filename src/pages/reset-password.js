@@ -1,4 +1,3 @@
-// pages/reset-password.js
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import AuthLayout from "@/components/AuthLayout";

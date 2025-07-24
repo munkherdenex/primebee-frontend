@@ -5,7 +5,12 @@ export default function Home() {
   const router = useRouter();
 
   useEffect(() => {
-    router.push('/login');
+    const isLoggedIn = localStorage.getItem('token');
+    if (isLoggedIn) {
+      router.push('/dashboard');
+    } else {
+      router.push('/dashboard');
+    }
   }, [router]);
 
   return null;
