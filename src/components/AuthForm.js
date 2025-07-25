@@ -1,6 +1,7 @@
 import {
     EuiFieldText,
     EuiFieldPassword,
+    EuiFormRow,
     EuiButton,
     EuiCheckbox,
     EuiSpacer,
@@ -15,24 +16,43 @@ import Image from 'next/image';
 
 export default function AuthForm({ isLogin = true }) {
     const [email, setEmail] = useState('');
+    const [emailError, setEmailError] = useState('');
+    const [emailTouched, setEmailTouched] = useState(false);
+    const [isEmailValid, setIsEmailValid] = useState(false);
     const [password, setPassword] = useState('');
     const [remember, setRemember] = useState(false);
     const [submitted, setSubmitted] = useState(false);
     const [resending, setResending] = useState(false);
     const router = useRouter();
 
+    const validateEmail = (email) => {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(String(email).toLowerCase());
+    };
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (isLogin) {
-        localStorage.setItem('token', 'dummy-token');
 
-        // Redirect to dashboard
-        router.push('/dashboard');
+        const valid = validateEmail(email);
+        if (!valid) {
+            setEmailError('Та бодит имэйл хаяг оруулна уу.');
+            setEmailTouched(true);
+            return;
+        }
+
+        setEmailError('');
+        setEmailTouched(false);
+
+        if (isLogin) {
+            localStorage.setItem('token', 'dummy-token');
+            router.push('/dashboard');
         } else {
             setSubmitted(true);
-            setResendTimer(60); 
+            setResendTimer(60);
         }
     };
+
+
     const [resendTimer, setResendTimer] = useState(0);
 
     const handleResend = () => {
@@ -61,7 +81,7 @@ export default function AuthForm({ isLogin = true }) {
                 <EuiTitle size="l" align="left" style={{ marginBottom: 16 }}>
                     <h1>Бүртгүүлэх</h1>
                 </EuiTitle>
-                <span style={{ fontSize: 16, color: '#666', textAlign: 'left'}}>
+                <span style={{ fontSize: 16, color: '#666', textAlign: 'left' }}>
                     Таны имэйл хаяг руу бүртгэлийн линк илгээгдлээ.
                 </span>
                 <EuiSpacer size="xxl" />
@@ -72,9 +92,9 @@ export default function AuthForm({ isLogin = true }) {
                     style={{ marginBottom: 14, textAlign: 'left' }}
                 >
                     <div style={{ marginTop: 8 }}>
-                      {`${email} хаяг руу бүртгэлийн линк илгээгдлээ.`}
-                      <br />
-                      Имэйлээ шалгаад линк дээр дарж бүртгэлээ баталгаажуулна уу.
+                        {`${email} хаяг руу бүртгэлийн линк илгээгдлээ.`}
+                        <br />
+                        Имэйлээ шалгаад линк дээр дарж бүртгэлээ баталгаажуулна уу.
                     </div>
                 </EuiCallOut>
                 <EuiButton
@@ -124,13 +144,26 @@ export default function AuthForm({ isLogin = true }) {
             <strong>Имэйл</strong>
             <br />
             <br />
-            <EuiFieldText
-                placeholder={isLogin ? "Имэйл хаягаа оруулна уу." : "Имэйл хаягаа оруулна уу."}
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                fullWidth
-                required
-            />
+            <EuiFormRow
+                isInvalid={emailTouched && !!emailError}
+                error={emailTouched && emailError}
+            >
+                <EuiFieldText
+                    placeholder={isLogin ? "Имэйл хаягаа оруулна уу." : "Имэйл хаягаа оруулна уу."}
+                    value={email}
+                    onChange={(e) => {
+                        setEmail(e.target.value);
+                        if (emailTouched) {
+                            setEmailError(validateEmail(e.target.value) ? '' : 'Та бодит имэйл хаяг оруулна уу');
+                        }
+                    }}
+                    onBlur={() => setEmailTouched(true)}
+                    isInvalid={emailTouched && !!emailError}
+                    fullWidth
+                    required
+                />
+            </EuiFormRow>
+
             <EuiSpacer size="m" />
 
             {isLogin && (
@@ -166,28 +199,28 @@ export default function AuthForm({ isLogin = true }) {
 
             <EuiSpacer size="m" />
             {!isLogin && (
-            <div style={{
-                display: 'flex',
-                alignItems: 'center',
-                margin: '16px 0'
-            }}>
                 <div style={{
-                    flex: 1,
-                    height: 1,
-                    background: '#e0e0e0'
-                }} />
-                <span style={{
-                    margin: '0 12px',
-                    color: '#999',
-                    fontWeight: 500,
-                    fontSize: 14
-                }}>Эсвэл</span>
-                <div style={{
-                    flex: 1,
-                    height: 1,
-                    background: '#e0e0e0'
-                }} />
-            </div>
+                    display: 'flex',
+                    alignItems: 'center',
+                    margin: '16px 0'
+                }}>
+                    <div style={{
+                        flex: 1,
+                        height: 1,
+                        background: '#e0e0e0'
+                    }} />
+                    <span style={{
+                        margin: '0 12px',
+                        color: '#999',
+                        fontWeight: 500,
+                        fontSize: 14
+                    }}>Эсвэл</span>
+                    <div style={{
+                        flex: 1,
+                        height: 1,
+                        background: '#e0e0e0'
+                    }} />
+                </div>
             )}
             <EuiText size="s" textAlign="center">
                 <p>

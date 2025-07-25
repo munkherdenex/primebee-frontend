@@ -99,6 +99,9 @@ export default function ResetPasswordPage() {
                     <>
                         <EuiText fontSize="xxl" style={{ marginBottom: 17 }}>
                             <h2>Шинэ нууц үг оруулах</h2>
+                            <span style={{ fontSize: 14, color: "#666" }}>
+                                Таны шинэ нууц үг хуучин нууц үгнээс өөр байх хэрэгтэйг анхаарна уу.
+                            </span>
                         </EuiText>
                         <EuiSpacer size="l" />
                         <div style={{ width: "100%", maxWidth: 400 }}>

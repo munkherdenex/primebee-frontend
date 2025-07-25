@@ -17,7 +17,7 @@ export default function AuthLayout({ children }) {
                 <div
                     style={{
                         flex: 1,
-                        background: 'linear-gradient(-60deg, #0033ff, #5997f4ff)',
+                        background: 'linear-gradient(-60deg, #0033ff, #5997f4ff, #2a48c3ff)',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
@@ -54,6 +54,7 @@ export default function AuthLayout({ children }) {
                             gap: 24,
                         }}
                     >
+                        {/* Top Card */}
                         <div style={{ borderRadius: 18, marginTop: 0, marginBottom: 10, boxShadow: '0 2px 8px rgba(0,0,0,0.04)' }}>
                             <Image
                                 src="/cards=2.png"
@@ -63,11 +64,12 @@ export default function AuthLayout({ children }) {
                                 style={{
                                     borderRadius: 18,
                                     objectFit: 'cover',
-                                    opacity: 0.6,
+                                    opacity: 0.4,
                                 }}
                             />
                         </div>
 
+                        {/* Center Card */}
                         <div style={{ borderRadius: 18, boxShadow: '0 2px 8px rgba(0,0,0,0.04)' }}>
                             <Image
                                 src="/cards=1.png"
@@ -81,16 +83,18 @@ export default function AuthLayout({ children }) {
                             />
                         </div>
 
+                        {/* Bottom Card */} 
+                
                         <div style={{ borderRadius: 18, marginTop: 10, boxShadow: '0 2px 8px rgba(0,0,0,0.04)' }}>
                             <Image
                                 src="/cards=3.png"
-                                alt="Top Card"
+                                alt="Bottom Card"
                                 width={330}
                                 height={370}
                                 style={{
                                     borderRadius: 18,
                                     objectFit: 'cover',
-                                    opacity: 0.6,
+                                    opacity: 0.4,
                                 }}
                             />
                         </div>
