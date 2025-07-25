@@ -27,10 +27,10 @@ export default function ResetPasswordPage() {
         e.preventDefault();
         setError("");
 
-        if (!token) {
-            setError("Invalid or missing token.");
-            return;
-        }
+        // if (!token) {
+        //     setError("Invalid or missing token.");
+        //     return;
+        // }
 
         if (password !== confirmPassword) {
             setError("Нууц үг таарахгүй байна.");
@@ -64,11 +64,11 @@ export default function ResetPasswordPage() {
             <div
                 style={{
                     width: "100%",
-                    maxWidth: 550,
-                    height: "100%",
+                    maxWidth: 500,
                     margin: "0 auto",
+                    height: "100%",
                     borderRadius: 18,
-                    padding: 32,
+                    padding: "24px 16px",
                     display: "flex",
                     flexDirection: "column",
                     alignItems: "flex-start",
@@ -101,8 +101,9 @@ export default function ResetPasswordPage() {
                             <h2>Шинэ нууц үг оруулах</h2>
                         </EuiText>
                         <EuiSpacer size="l" />
-                        <EuiForm component="form" onSubmit={handleSubmit} style={{ width: "100%", maxWidth: 550 }}>
-                            <EuiFormRow label="Нууц үг">
+                        <div style={{ width: "100%", maxWidth: 400 }}>
+                        <EuiForm component="form" onSubmit={handleSubmit} >
+                            <EuiFormRow label={<strong>Нууц үг</strong>}>
                                 <>
                                     <EuiFieldPassword
                                         required
@@ -147,7 +148,7 @@ export default function ResetPasswordPage() {
 
 
 
-                            <EuiFormRow label="Нууц үг давтах">
+                            <EuiFormRow label={<strong>Нууц үг давтах</strong>} fillWidth>
                                 <EuiFieldPassword
                                     required
                                     type="dual"
@@ -169,6 +170,7 @@ export default function ResetPasswordPage() {
                                 Нууц үг хадгалах
                             </EuiButton>
                         </EuiForm>
+                        </div>
                     </>
                 )}
             </div>
